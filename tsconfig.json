@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "experimentalDecorators": true,
+  },
+  "include": [
+    "src",
+    ".eslintrc.cjs",
+    ".vite.config.ts"
+  ],
+  "paths": {
+    "App/*": [
+      "*"
+    ],
+    "Components/*": [
+      "components/*"
+    ],
+    "Store/*": [
+      "store/*"
+    ],
+    "Helpers/*": [
+      "helpers/*"
+    ]
+  },
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}

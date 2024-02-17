@@ -1,0 +1,10 @@
+.form-cell-component {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 4px 0;
+
+  & .label {
+    margin-bottom: 4px;
+  }
+}

@@ -3,7 +3,7 @@
 ## Use git clone.
 
 ```
-git clone https://github.com/jaman7/weather-react-mobx-typescript.git
+git clone https://github.com/jaman7/react-vite-mobx-typescript-disco-floor-sample-app.git
 ```
 
 ## install
@@ -17,4 +17,5 @@ npm install
 ```
 npm run dev
 ```
-"# react-vite-mobx-typescript-disco-floor-sample-app" 
+
+"# react-vite-mobx-typescript-disco-floor-sample-app"

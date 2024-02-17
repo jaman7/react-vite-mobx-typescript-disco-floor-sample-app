@@ -1,0 +1,17 @@
+.button__play-button {
+  height: 40px;
+  width: 170px;
+  font-size: 24px;
+  border-radius: 5px;
+}
+
+.button__play-button--stopped {
+  color: black;
+  background-color: white;
+}
+
+.button__play-button--playing {
+  padding-top: 2px;
+  color: white;
+  background-color: black;
+}

@@ -1,0 +1,12 @@
+{
+  "form": {
+    "patern": "Patern",
+    "speed": "SpeedControl",
+    "isPlay": "PlayControl",
+    "colorInvertControl": "ColorInvertControl",
+    "countTilesXY": "CountTilesXY",
+    "countPaternFrames": "CountPaternFrames",
+    "sizeTilesX": "SizeTilesX",
+    "sizeTilesY": "SizeTilesY"
+  }
+}

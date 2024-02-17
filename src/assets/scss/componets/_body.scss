@@ -1,0 +1,15 @@
+html {
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  color: $bg-white;
+  font-weight: 400;
+  font-family: $fontm;
+  -moz-osx-font-smoothing: grayscale !important;
+  -webkit-font-smoothing: subpixel-antialiased !important;
+  font-size: $fontbase;
+  background-color: $dark-bg;
+  height: 100vh;
+}

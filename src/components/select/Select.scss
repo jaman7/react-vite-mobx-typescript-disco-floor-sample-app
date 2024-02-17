@@ -1,0 +1,14 @@
+.select-component {
+  display: block;
+
+  & .p-component {
+    width: 100%;
+  }
+}
+
+.select-component-panel {
+  & .p-dropdown-items {
+    margin: 0;
+    padding: 0;
+  }
+}
