@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { isEqual } from 'lodash';
-import { IFormCell } from '../components/formCell/FormCell.model';
+import { IFormElements } from '../components/formElements/FormElements.model';
 
 export const mathSubtraction = (a: number | null, b: number, isIncrement = true): number => {
   const a1 = a?.toString()?.split('.');
@@ -31,38 +31,18 @@ export const isNumeric = (value: string | number | null): boolean => {
   return !Number.isNaN(value) && !Number.isNaN(parseFloat(value));
 };
 
-export const createFormConfig = (
-  formConfig: IFormCell,
+export const createConfigForm = (
+  formConfig: IFormElements,
   params: {
     prefix?: string;
-    placeholderPrefix?: string;
     dictionaries?: any;
   } = {}
-): IFormCell[] => {
+): IFormElements[] => {
   return (
     Object.keys(formConfig)?.map((key: string) => {
-      const { prefix, placeholderPrefix, dictionaries } = params || {};
-      const { config } = formConfig[key];
-      const {
-        placeholder,
-        type,
-        formCellType,
-        step,
-        precision,
-        min,
-        max,
-        readonly,
-        styleType,
-        dictName,
-        dictData,
-        header,
-        headerKey,
-        value,
-        dictKey,
-        customClass,
-        formCellClass,
-        isHeader,
-      } = (config as IFormCell) || {};
+      const { prefix, dictionaries } = params || {};
+      const { config } = formConfig?.[key] ?? {};
+      const { placeholder, type, formCellType, step, min, max, dictName, dictData, header, value } = (config as IFormElements) || {};
 
       return {
         formControlName: key,
@@ -70,29 +50,19 @@ export const createFormConfig = (
         config: {
           ...(config ?? {}),
           prefix,
-          header: header ?? `${prefix}.${headerKey ?? key}`,
+          header: header ?? `${prefix}.${key}`,
           formCellType: !value ? formCellType ?? 'input' : null,
-          placeholder: placeholder ?? `${placeholderPrefix ?? prefix}.${headerKey ?? key}`,
+          placeholder: placeholder ?? `${prefix}.${key}`,
           step: step ?? 1,
-          precision: precision ?? 0,
           min: min ?? 0,
           max: max ?? 100000,
-          readonly: readonly ?? false,
-          styleType: styleType ?? 'default',
           dictName: dictName ?? key,
           dictData: dictData ?? dictionaries?.[dictName ?? key] ?? [],
-          isHeader: typeof isHeader !== 'boolean' ? true : isHeader,
-          customClass: customClass ?? '',
-          formCellClass: formCellClass ?? '',
-          dictKey,
         },
       };
     }) ?? []
   );
 };
-
-export const createColumnsCells = (config: IFormCell[], columns: number): (IFormCell[] | null)[] =>
-  config?.map((e, i) => (i % columns === 0 ? config.slice(i, i + columns) : null))?.filter(e => e) ?? [];
 
 export const padZero = (str: string, len?: number): string => {
   len = len || 2;

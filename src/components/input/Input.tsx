@@ -1,16 +1,14 @@
 import './Input.scss';
-
-import { ifChanged, isNumeric, mathSubtraction, usePrevious } from 'App/helpers/helpers';
 import { FormikProps } from 'formik';
 import { InputSwitch, InputSwitchChangeEvent } from 'primereact/inputswitch';
 import { classNames } from 'primereact/utils';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaMinus, FaPlus } from 'react-icons/fa';
-
 import Button from '../button/Button';
 import { IInput, inputConfigDefault } from './input.model';
 import { InputType } from './input.types';
+import { ifChanged, isNumeric, mathSubtraction, usePrevious } from 'helpers/helpers';
 
 const { RANGE, NUMBER, SWITCH } = InputType;
 
@@ -29,19 +27,7 @@ const Input = (props: IProps) => {
 
   const [inputConfig, setInputConfig] = useState<IInput>(inputConfigDefault());
 
-  const {
-    type,
-    placeholder,
-    readonly,
-    customClass,
-    inputClass,
-    maxLength,
-    min = 0,
-    max = 0,
-    step = 0,
-    disableBtnNumbers,
-    disabled,
-  } = inputConfig || {};
+  const { type, placeholder, readonly, inputClass, maxLength, min = 0, max = 0, step = 0, disableBtnNumbers, disabled } = inputConfig || {};
 
   useEffect(() => {
     ifChanged(prevConfig?.config, config, () => {
@@ -79,7 +65,7 @@ const Input = (props: IProps) => {
     e.preventDefault();
   };
 
-  const nameClass = `input-component ${customClass ?? ''} ${isTypeRange ? 'input-component__range' : ''}`.trim().replaceAll('  ', ' ');
+  const nameClass = `input-component ${isTypeRange ? 'input-component__range' : ''}`;
   const isFormFieldInvalid = (name: string): boolean => !!(formik?.touched?.[name] && formik?.errors?.[name]);
 
   return (

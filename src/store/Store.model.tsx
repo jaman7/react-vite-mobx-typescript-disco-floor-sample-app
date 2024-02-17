@@ -1,4 +1,4 @@
-import { IPaternAllColor } from 'App/interfaces/interfaces';
+import { IPaternAllColor } from 'interfaces/interfaces';
 
 export interface IControls {
   patern?: number;

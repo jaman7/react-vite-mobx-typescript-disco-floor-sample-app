@@ -1,7 +1,7 @@
-import { IPaternAllColor } from 'App/interfaces/interfaces';
 import { action, computed, configure, makeObservable, observable, runInAction } from 'mobx';
 
 import { IContainerSize, IControls, IStore } from './Store.model';
+import { IPaternAllColor } from 'interfaces/interfaces';
 
 configure({
   enforceActions: 'never',

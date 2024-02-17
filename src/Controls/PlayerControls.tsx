@@ -1,17 +1,15 @@
 import './PlayerControls.scss';
-
-import FormCell from 'App/components/formCell/FormCell';
-import { IFormCell } from 'App/components/formCell/FormCell.model';
-import patterns from 'App/data/patterns';
-import { Colors } from 'App/data/reference';
-import { makePatern } from 'App/helpers/matrix-generate';
-import { IStore } from 'App/store/Store.model';
 import { FormikProps, useFormik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { useEffect, useRef, useState } from 'react';
-
 import { dictionaries, formConfig, primaryFormConfig } from './PlayerControls.config';
 import { ConfigControlsNames, PaternSelect } from './PlayerControls.enums';
+import { IFormElements } from 'components/formElements/FormElements.model';
+import FormElements from 'components/formElements/FormElements';
+import { IStore } from 'store/Store.model';
+import { makePatern } from 'helpers/matrix-generate';
+import patterns from 'data/patterns';
+import { Colors } from 'data/reference';
 
 const { PATERN, COUNT_TILES_XY, COUNT_PATERN_FRAMES, SIZE_TILES_X, SIZE_TILES_Y } = ConfigControlsNames;
 
@@ -33,7 +31,7 @@ const PlayerControls = inject('Store')(
     } = props || {};
     const controlRef = useRef<null>(null);
 
-    const [formConfig$, setFormConfig$] = useState<IFormCell[][]>(primaryFormConfig?.(formConfig) ?? []);
+    const [formConfig$, setFormConfig$] = useState<IFormElements[][]>(primaryFormConfig?.(formConfig) ?? []);
 
     const formik: FormikProps<any> = useFormik({
       initialValues: {
@@ -123,7 +121,7 @@ const PlayerControls = inject('Store')(
                     (item, idx: number) =>
                       item && (
                         <div key={idx} className="items">
-                          <FormCell
+                          <FormElements
                             key={idx}
                             formControlName={item.formControlName}
                             type={item.type}

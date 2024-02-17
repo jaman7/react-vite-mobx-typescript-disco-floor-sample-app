@@ -1,9 +1,9 @@
-import { IFormCell, IFormCellConfig } from 'App/components/formCell/FormCell.model';
-import { IDictionary } from 'App/components/select/Select.model';
-import { createFormConfig } from 'App/helpers/helpers';
-import { IContainerSize } from 'App/store/Store.model';
+import { IFormElements, IFormElementsConfig } from 'components/formElements/FormElements.model';
+import { IDictionary } from 'components/select/Select.model';
+import { createConfigForm } from 'helpers/helpers';
+import { IContainerSize } from 'store/Store.model';
 
-export const formConfig: IFormCellConfig = {
+export const formConfig: IFormElementsConfig = {
   patern: { config: { formCellType: 'select', dictName: 'paternDict' } },
   isPlay: { config: { formCellType: 'input-switch' } },
   speed: { config: { formCellType: 'input-range', min: 0, max: 4, step: 0.5 } },
@@ -28,7 +28,7 @@ export const dictionaries: IDictionary = {
 
 const formLayout: number[][] = [[0, 1], [2], [3], [4, 5], [6, 7]];
 
-export const primaryFormConfig = (config: IFormCellConfig, containerSize?: IContainerSize): IFormCell[][] => {
+export const primaryFormConfig = (config: IFormElementsConfig, containerSize?: IContainerSize): IFormElements[][] => {
   const { sizeH, sizeV } = containerSize || {};
   const configTmp = config;
   if (configTmp?.sizeTilesY?.config && sizeV) {
@@ -39,13 +39,13 @@ export const primaryFormConfig = (config: IFormCellConfig, containerSize?: ICont
     configTmp.sizeTilesX.config.max = sizeH ?? 100;
   }
 
-  const data = createFormConfig(configTmp, {
+  const data = createConfigForm(configTmp, {
     prefix: `form`,
   });
 
-  const configData: IFormCell[][] = [];
-  const item = (el: number[]): IFormCell[] => {
-    const items: IFormCell[] = [];
+  const configData: IFormElements[][] = [];
+  const item = (el: number[]): IFormElements[] => {
+    const items: IFormElements[] = [];
     el.forEach(i => {
       items.push(data[i]);
     });

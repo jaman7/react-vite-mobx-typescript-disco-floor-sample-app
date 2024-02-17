@@ -1,20 +1,18 @@
-import './FormCell.scss';
-
-import { ifChanged, usePrevious } from 'App/helpers/helpers';
+import './FormElements.scss';
 import { FormikProps } from 'formik';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import Input from '../input/Input';
 import { IInput } from '../input/input.model';
 import Select from '../select/Select';
 import { ISelect } from '../select/Select.model';
-import { FormCellConfigDefault, IFormCell } from './FormCell.model';
+import { FormCellConfigDefault, IFormElements } from './FormElements.model';
+import { ifChanged, usePrevious } from 'helpers/helpers';
 
 interface IProps {
   formControl?: any;
   formControlName?: string;
-  config?: IFormCell;
+  config?: IFormElements;
   formik?: FormikProps<any>;
   valueChange?: Dispatch<SetStateAction<any>>;
   [name: string]: any;
@@ -23,7 +21,7 @@ interface IProps {
 const FormCell = (props: IProps) => {
   const { t } = useTranslation();
   const { config, formControlName, formik, valueChange } = props || {};
-  const [formCellConfig, setFormCellConfig] = useState<IFormCell>(FormCellConfigDefault());
+  const [formCellConfig, setFormCellConfig] = useState<IFormElements>(FormCellConfigDefault());
   const prevConfig = usePrevious({ config });
 
   useEffect(() => {

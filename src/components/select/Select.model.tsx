@@ -1,5 +1,4 @@
-export type SelectType = 'Select' | 'Date' | 'DateRange' | 'Input' | 'Empty';
-export type SelectMode = 'multiple' | 'tags' | 'default';
+export type SelectType = 'Select';
 
 export interface IDictType {
   displayName: string;
@@ -12,14 +11,8 @@ export interface IDictionary {
 
 export interface ISelect {
   formControlName?: string;
-  name?: string;
-  tooltipTitle?: string;
-  labelTitle?: string;
   placeholder?: string;
   readonly?: boolean;
-  customClass?: string;
-  selectClass?: string;
-  formCellClass?: string;
   field?: string;
   type?: SelectType;
   defaultValue?: number;
