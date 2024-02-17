@@ -2,7 +2,7 @@ import './i18n';
 import { inject, observer } from 'mobx-react';
 import { useCallback, useEffect, useState } from 'react';
 import Board from './board/Board';
-import PlayerControls from './Controls/PlayerControls';
+import PlayerControls from './playerControls/PlayerControls';
 import patterns from './data/patterns';
 import { makePatern } from './helpers/matrix-generate';
 import useResizeObserver from './helpers/use-resize-observer';
