@@ -1,7 +1,7 @@
-import { IInput } from '../input/input.model';
-import { InputTypes } from '../input/input.types';
-import { IDictType, ISelect, SelectType } from '../select/Select.model';
 import { IFormElementsTypes } from './FormElements.type';
+import { InputTypes } from '../shared/input/input.types';
+import { IDictType, ISelect, SelectType } from '../shared/select/Select.model';
+import { IInput } from '../shared/input/input.model';
 
 export interface IFormElementsConfig {
   [name: string]: IFormElements;
@@ -13,6 +13,7 @@ export type IFormElements = Omit<ISelect & IInput, 'type'> & {
   formCellType?: IFormElementsTypes;
   value?: string | number | any | any[];
   type?: SelectType | IFormElementsTypes | InputTypes;
+  disabled?: boolean;
   hidden?: boolean;
   prefix?: string;
   placeholder?: string;

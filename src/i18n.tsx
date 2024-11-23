@@ -3,26 +3,27 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
-import translationPL from './assets/i18/pl.json';
-
-const resources = {
-  pl: {
-    translation: translationPL,
-  },
-};
-
 i18n
   .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    lng: 'pl',
-    fallbackLng: 'pl',
+    fallbackLng: 'en',
+    lng: 'en',
     debug: false,
+    defaultNS: 'en',
     interpolation: {
       escapeValue: false,
     },
-    resources,
+    backend: {
+      loadPath: 'src/assets/i18/{{lng}}.json',
+    },
+    detection: {
+      order: ['querystring', 'localStorage', 'navigator'],
+      caches: ['localStorage'],
+      lookupQuerystring: 'lang',
+      lookupLocalStorage: 'i18nextLng',
+    },
   });
 
 export default i18n;

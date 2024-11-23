@@ -1,0 +1,10 @@
+.dance-floor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 0 0.5rem;
+  height: fit-content;
+}

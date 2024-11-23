@@ -1,34 +1,23 @@
-import './FormElements.scss';
-import { FormikProps } from 'formik';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Input from '../input/Input';
-import { IInput } from '../input/input.model';
-import Select from '../select/Select';
-import { ISelect } from '../select/Select.model';
 import { FormCellConfigDefault, IFormElements } from './FormElements.model';
-import { ifChanged, usePrevious } from 'helpers/helpers';
+import { Control, Controller } from 'react-hook-form';
+import { IInput } from '../shared/input/input.model';
+import Input from '../shared/input/Input';
+import Select from '../shared/select/Select';
+import { ISelect } from '../shared/select/Select.model';
 
 interface IProps {
-  formControl?: any;
-  formControlName?: string;
+  formControlName: string;
   config?: IFormElements;
-  formik?: FormikProps<any>;
-  valueChange?: Dispatch<SetStateAction<any>>;
+  control: Control<any>;
+  valueChange?: (value: any) => void;
   [name: string]: any;
 }
 
-const FormCell = (props: IProps) => {
+const FormElements = (props: IProps) => {
   const { t } = useTranslation();
-  const { config, formControlName, formik, valueChange } = props || {};
-  const [formCellConfig, setFormCellConfig] = useState<IFormElements>(FormCellConfigDefault());
-  const prevConfig = usePrevious({ config });
-
-  useEffect(() => {
-    ifChanged(prevConfig?.config, config, () => {
-      setFormCellConfig({ ...FormCellConfigDefault(), ...config });
-    });
-  }, [config]);
+  const { formControlName, config, control, valueChange } = props || {};
+  const formCellConfig = { ...FormCellConfigDefault(), ...config };
 
   const itemsConfig = (data: IInput): Partial<IInput> => {
     const { formCellType } = data;
@@ -62,15 +51,20 @@ const FormCell = (props: IProps) => {
       case 'input-range':
       case 'input-switch':
         return (
-          <Input
-            formik={formik}
-            valueChange={valueChange}
-            formControlName={formControlName}
-            config={itemsConfig?.(formCellConfig as IInput)}
+          <Controller
+            name={formControlName}
+            control={control}
+            render={({ field }) => <Input {...field} config={itemsConfig(formCellConfig as IInput)} valueChange={valueChange} />}
           />
         );
       case 'select':
-        return <Select formik={formik} valueChange={valueChange} formControlName={formControlName} config={formCellConfig as ISelect} />;
+        return (
+          <Controller
+            name={formControlName}
+            control={control}
+            render={({ field }) => <Select {...field} config={formCellConfig as ISelect} valueChange={valueChange} />}
+          />
+        );
       default:
         return <></>;
     }
@@ -84,4 +78,4 @@ const FormCell = (props: IProps) => {
   );
 };
 
-export default FormCell;
+export default FormElements;

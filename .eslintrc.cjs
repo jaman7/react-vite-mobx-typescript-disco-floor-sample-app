@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   env: {
     browser: true,
-    commonj: true,
+    commonjs: true,
     es6: true,
     node: true,
     es2022: true,
@@ -13,13 +13,24 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
     project: path.join(__dirname, './tsconfig.json'),
-    tsconfigRootDir: './src',
+    tsconfigRootDir: path.resolve(__dirname, './src'),
   },
   settings: {
     react: {
       version: 'detect',
     },
     'import/resolver': {
+      alias: {
+        map: [
+          ['@app', './src'],
+          ['@components', './src/components'],
+          ['@shared', './src/shared'],
+          ['@store', './src/store'],
+          ['@assets', './src/assets'],
+          ['@views', './src/view'],
+        ],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
       node: {
         paths: ['src'],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -28,14 +39,10 @@ module.exports = {
   },
   extends: [
     'airbnb',
-    'airbnb-typescript',
-    'airbnb/hooks',
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:import/recommended',
-    'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/recommended',
-    'eslint-config-prettier',
+    'plugin:prettier/recommended',
   ],
   plugins: ['react', '@typescript-eslint', 'simple-import-sort', 'prettier'],
   rules: {
@@ -100,6 +107,16 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-named-as-default': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'warn',
+    '@typescript-eslint/no-empty-function': 'warn',
+    'import/no-unused-modules': ['error', { unusedExports: true }],
+    'import/order': [
+      'error',
+      {
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        'newlines-between': 'always',
+      },
+    ],
   },
   overrides: [
     {

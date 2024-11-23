@@ -1,31 +1,57 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@shared/*": [
+        "src/shared/*"
+      ],
+      "@store/*": [
+        "src/store/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@views/*": [
+        "src/view/*"
+      ]
+    },
     "target": "ES2022",
     "useDefineForClassFields": true,
     "lib": [
-      "ES2020",
       "DOM",
+      "ESNext",
       "DOM.Iterable"
+    ],
+    "types": [
+      "jest",
+      "node",
+      "@testing-library/jest-dom"
     ],
     "module": "ESNext",
     "skipLibCheck": true,
-    /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
     "noFallthroughCasesInSwitch": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
   },
   "include": [
     "src",
+    "**/*.test.ts",
+    "**/*.test.tsx",
     ".eslintrc.cjs",
     ".vite.config.ts"
   ],

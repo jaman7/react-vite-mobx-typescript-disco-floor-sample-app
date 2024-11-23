@@ -1,0 +1,26 @@
+.select-component {
+  display: flex;
+
+  & .p-component {
+    width: 100%;
+  }
+
+  & .p-dropdown {
+    &-label {
+      padding: 0 0.25rem;
+    }
+  }
+}
+
+.select-component-panel {
+  & .p-dropdown {
+    &-items {
+      margin: 0;
+      padding: 0;
+    }
+
+    &-item {
+      padding: 3px 4px;
+    }
+  }
+}

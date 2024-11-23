@@ -1,18 +1,19 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import sass from 'sass'
-import tsconfigPaths from 'vite-tsconfig-paths'
-import path from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import sass from 'sass';
+import path from 'path';
+import svgr from 'vite-plugin-svgr';
+import checker from 'vite-plugin-checker';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
   resolve: {
     alias: {
-      App: path.resolve(__dirname, './src'),
-      Components: path.resolve(__dirname, './src/components'),
-      Store: path.resolve(__dirname, './src/store'),
-      Helpers: path.resolve(__dirname, './src/helpers'),
+      '@app': path.resolve(__dirname, './src'),
+      '@components': path.resolve(__dirname, './src/components'),
+      '@shared': path.resolve(__dirname, './src/shared'),
+      '@store': path.resolve(__dirname, './src/store'),
+      '@assets': path.resolve(__dirname, './src/assets'),
+      '@views': path.resolve(__dirname, './src/view'),
     },
   },
   plugins: [
@@ -24,16 +25,28 @@ export default defineConfig({
         ],
       },
     }),
-    tsconfigPaths(),
+    svgr({ include: '**/*.svgr.svg' }),
+    checker({ typescript: true }),
   ],
   css: {
     preprocessorOptions: {
       scss: {
+        api: 'modern-compiler',
+        quietDeps: true,
+        silenceDeprecations: ['mixed-decls', 'color-functions', 'global-builtin', 'import'],
         implementation: sass,
+      },
+    },
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
       },
     },
   },
   build: {
     target: 'esnext',
   },
-})
+});

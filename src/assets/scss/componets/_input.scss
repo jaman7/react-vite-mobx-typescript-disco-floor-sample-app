@@ -1,0 +1,51 @@
+.input-component {
+  display: flex;
+  position: relative;
+  width: 100%;
+
+  &--content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    & .button {
+      height: 32px;
+    }
+  }
+
+  & input {
+    background-color: $bg-white;
+    padding: 3px;
+    color: $bg-black;
+    width: 100%;
+  }
+
+  &__range {
+    display: flex;
+    flex-direction: column;
+
+    &--text {
+      width: 100%;
+      display: block;
+      font-size: 16px;
+      color: $colorWhite;
+      text-align: center;
+    }
+  }
+
+  & .p-inputswitch {
+    &-slider {
+      background-color: $colorGray;
+
+      &::before {
+        background-color: $colorFontNormal;
+      }
+    }
+
+    &-checked .p-inputswitch-slider {
+      &::before {
+        background-color: $colorGreen;
+      }
+    }
+  }
+}

@@ -18,4 +18,14 @@ npm install
 npm run dev
 ```
 
+```
+tests
+```
+
+## run command
+
+```
+npm test
+```
+
 "# react-vite-mobx-typescript-disco-floor-sample-app"

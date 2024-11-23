@@ -1,0 +1,9 @@
+.cell {
+  margin: 0;
+  display: block;
+  backdrop-filter: blur(10px) brightness(0.8); // Rozmycie i przyciemnienie tła
+  border: 1px solid rgb(255 255 255 / 60%); // Subtelna ramka
+  background: rgb(255 255 255 / 10%); // Półprzezroczyste tło
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%); // Efekt podniesienia
+  border-radius: 8px; // Zaokrąglenie rogów
+}

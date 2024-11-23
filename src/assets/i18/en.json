@@ -1,0 +1,14 @@
+{
+  "form": {
+    "patern": "Patern",
+    "speed": "SpeedControl",
+    "isPlay": "PlayControl",
+    "colorInvertControl": "ColorInvertControl",
+    "countTilesXY": "CountTilesXY",
+    "countPaternFrames": "CountPaternFrames",
+    "sizeTilesX": "SizeTilesX",
+    "sizeTilesY": "SizeTilesY",
+    "is3D": "Enable 3D Visualization"
+  },
+  "threeJsSceneActive": "Three.js scene is active. No board patterns available for this mode."
+}
